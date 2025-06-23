@@ -39,12 +39,12 @@ export default function App() {
   const [admins, setAdmins] = useState(['smdabdulla510@gmail.com']);
 
   const [products, setProducts] = useState([
-    { id: 1, name: 'Iron', price: '₹500', image: ironImg },
-    { id: 2, name: 'Plastic', price: '₹700', image: plasticImg },
-    { id: 3, name: 'Books', price: '₹1200', image: booksImg },
-    { id: 4, name: 'Newspaper', price: '₹300', image: newspaperImg },
-    { id: 5, name: 'Cardboard', price: '₹900', image: cardboardImg },
-    { id: 6, name: 'Steel', price: '₹1500', image: steelImg }
+    { id: 1, name: 'Iron', price: '₹30', image: ironImg },
+    { id: 2, name: 'Plastic', price: '₹15', image: plasticImg },
+    { id: 3, name: 'Books', price: '₹12', image: booksImg },
+    { id: 4, name: 'Newspaper', price: '₹20', image: newspaperImg },
+    { id: 5, name: 'Cardboard', price: '₹12', image: cardboardImg },
+    { id: 6, name: 'Steel', price: '₹50', image: steelImg }
   ]);
 
   const provider = new GoogleAuthProvider();
