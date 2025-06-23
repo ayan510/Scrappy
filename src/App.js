@@ -1,3 +1,4 @@
+// All imports remain same...
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from './comp/firebase';
 import './App.css';
@@ -14,7 +15,7 @@ import {
   signOut
 } from 'firebase/auth';
 import {
-  Button, Icon, Image, Menu, Modal, Sidebar, Segment, Form, Input
+  Button, Icon, Image, Menu, Modal, Sidebar, Segment, Form, Input, Container
 } from 'semantic-ui-react';
 
 import ironImg from './assets/iron.jpg';
@@ -80,10 +81,18 @@ export default function App() {
   };
 
   return (
-    <div style={{ marginTop: '20px', marginLeft: '20px' }}>
+    <Container fluid style={{ padding: '10px' }}>
       <MyContext.Provider value={{ user, setUser, params, setParams, doLogin, admins }}>
-        <Sidebar.Pushable as='div'>
-          <Sidebar as={Menu} animation='overlay' onHide={() => setSidebarVisible(false)} vertical visible={sidebarVisible} width='thin' style={{ backgroundColor: darkTheme ? '#333' : '#f5f5f5' }}>
+        <Sidebar.Pushable>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            onHide={() => setSidebarVisible(false)}
+            vertical
+            visible={sidebarVisible}
+            width='thin'
+            style={{ backgroundColor: darkTheme ? '#333' : '#f5f5f5' }}
+          >
             {user ? (
               <Menu.Item onClick={() => setUserModalOpen(true)}>
                 <Image src={user.photoURL} avatar />
@@ -122,8 +131,8 @@ export default function App() {
           </Sidebar>
 
           <Sidebar.Pusher>
-            <Segment>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Segment basic>
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1em' }}>
                 <Button icon onClick={() => setSidebarVisible(true)}>
                   <Icon name='bars' />
                 </Button>
@@ -134,28 +143,21 @@ export default function App() {
                 )}
               </div>
 
-              <Menu secondary fluid>
-                <Menu.Item>
-                  <Button color='purple' onClick={() => setParams({ page: 'Home' })}>
-                    <Icon name='home' /> Home
-                  </Button>
-                </Menu.Item>
-                <Menu.Item>
-                  <Button color='yellow' onClick={() => setParams({ page: 'Products' })}>
-                    <Icon name='opencart' /> Item
-                  </Button>
-                </Menu.Item>
-                <Menu.Item>
-                  <Button color='green' onClick={() => setParams({ page: 'History' })}>
-                    <Icon name='user' /> Price
-                  </Button>
-                </Menu.Item>
-                <Menu.Item>
-                  <Button color='blue' onClick={() => setParams({ page: 'Mall' })}>
-                    <Icon name='shopping bag' /> Mall
-                  </Button>
-                </Menu.Item>
-              </Menu>
+              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '1em' }}>
+                <Button color='purple' onClick={() => setParams({ page: 'Home' })}>
+                  <Icon name='home' /> Home
+                </Button>
+                <Button color='yellow' onClick={() => setParams({ page: 'Products' })}>
+                  <Icon name='opencart' /> Item
+                </Button>
+                <Button color='green' onClick={() => setParams({ page: 'History' })}>
+                  <Icon name='user' /> Price
+                </Button>
+                <Button color='blue' onClick={() => setParams({ page: 'Mall' })}>
+                  <Icon name='shopping bag' /> Mall
+                </Button>
+              </div>
+
 
               <div className={darkTheme ? 'dark' : 'light'}>
                 {params.page === 'Home' && <Home />}
@@ -208,6 +210,6 @@ export default function App() {
           </Modal.Actions>
         </Modal>
       </MyContext.Provider>
-    </div>
+    </Container>
   );
 }

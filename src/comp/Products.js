@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MyContext } from '../App';
-import { Button, Card, Icon, Image, Modal, Form, Input } from 'semantic-ui-react';
+import { Button, Card, Icon, Image, Modal, Form, Input, Grid } from 'semantic-ui-react';
 
 export default function Products({ products, setProducts }) {
   const { user, admins } = useContext(MyContext);
@@ -24,22 +24,24 @@ export default function Products({ products, setProducts }) {
 
   return (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+      <Grid columns={2} stackable doubling>
         {products.map((p) => (
-          <Card key={p.id}>
-            <Image src={p.image} />
-            <Card.Content>
-              <Card.Header>{p.name}</Card.Header>
-              <Card.Meta>{p.price}</Card.Meta>
-              {isAdmin && (
-                <Button icon onClick={() => openEditModal(p)} style={{ marginTop: '10px' }}>
-                  <Icon name='edit' />
-                </Button>
-              )}
-            </Card.Content>
-          </Card>
+          <Grid.Column key={p.id}>
+            <Card fluid>
+              <Image src={p.image} wrapped ui={false} />
+              <Card.Content>
+                <Card.Header>{p.name}</Card.Header>
+                <Card.Meta>{p.price}</Card.Meta>
+                {isAdmin && (
+                  <Button icon onClick={() => openEditModal(p)} style={{ marginTop: '10px' }}>
+                    <Icon name='edit' />
+                  </Button>
+                )}
+              </Card.Content>
+            </Card>
+          </Grid.Column>
         ))}
-      </div>
+      </Grid>
 
       <Modal open={editModalOpen} onClose={() => setEditModalOpen(false)} size='tiny'>
         <Modal.Header>Edit Price</Modal.Header>
@@ -58,4 +60,4 @@ export default function Products({ products, setProducts }) {
       </Modal>
     </>
   );
-}  
+}

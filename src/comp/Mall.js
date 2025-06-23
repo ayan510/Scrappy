@@ -1,18 +1,20 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Grid } from 'semantic-ui-react';
 
 export default function Mall({ products = [] }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+    <Grid columns={2} stackable doubling>
       {products.map((p) => (
-        <Card key={p.id}>
-          <Image src={p.image} />
-          <Card.Content>
-            <Card.Header>{p.name}</Card.Header>
-            <Card.Meta>{p.price}</Card.Meta>
-          </Card.Content>
-        </Card>
+        <Grid.Column key={p.id}>
+          <Card fluid>
+            <Image src={p.image} wrapped ui={false} />
+            <Card.Content>
+              <Card.Header>{p.name}</Card.Header>
+              <Card.Meta>{p.price}</Card.Meta>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
       ))}
-    </div>
+    </Grid>
   );
 }
