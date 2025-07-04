@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Home from './comp/Home';
 import Products from './comp/Products';
 import History from './comp/History';
+import Store510 from './comp/Store510';
 import Mall from './comp/Mall';
 import {
   GoogleAuthProvider,
@@ -112,6 +113,9 @@ export default function App() {
             <Menu.Item onClick={() => { setParams({ page: 'History' }); setSidebarVisible(false); }}>
               <Icon name='user' /> My Accounts
             </Menu.Item>
+            <Menu.Item onClick={() => { setParams({ page: 'Store510' }); setSidebarVisible(false); }}>
+              <Icon name='shopping bag' /> Store
+            </Menu.Item>
             <Menu.Item onClick={() => { setParams({ page: 'Mall' }); setSidebarVisible(false); }}>
               <Icon name='shopping bag' /> Mall
             </Menu.Item>
@@ -153,6 +157,9 @@ export default function App() {
                 <Button color='green' onClick={() => setParams({ page: 'History' })}>
                   <Icon name='user' /> Price
                 </Button>
+                <Button color='blue' onClick={() => setParams({ page: 'Store510' })}>
+                  <Icon name='shopping bag' /> Store
+                </Button>
                 <Button color='blue' onClick={() => setParams({ page: 'Mall' })}>
                   <Icon name='shopping bag' /> Mall
                 </Button>
@@ -163,6 +170,7 @@ export default function App() {
                 {params.page === 'Home' && <Home />}
                 {params.page === 'Products' && <Products products={products} setProducts={setProducts} />}
                 {params.page === 'History' && <History />}
+                {params.page === 'Store510' && <Store510 />}
                 {params.page === 'Mall' && <Mall products={products} />}
               </div>
             </Segment>
